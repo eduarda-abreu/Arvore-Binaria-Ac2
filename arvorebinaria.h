@@ -14,3 +14,14 @@ typedef struct
     Data dataNasc; 
     char historico[1000];
 }Prontuario;
+
+
+typedef struct No
+{
+    Prontuario dados;
+    struct no *esquerda, *direita;
+}No;
+
+typedef struct{
+    No *raiz;
+}ArvB;
