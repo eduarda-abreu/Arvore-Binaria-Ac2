@@ -27,7 +27,7 @@ typedef struct{
     No *raiz;
 }ArvB;
 
-void inicializarArvore(ArvB raiz);
+void inicializarArvore(ArvB *arv);
 
 No* insere(No *raiz, Prontuario p);
 
