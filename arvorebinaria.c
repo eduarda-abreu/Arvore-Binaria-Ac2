@@ -106,3 +106,16 @@ bool atualizar(No *raiz, const char cpf, const char *novoNome, const char *novoH
         }
     }
 }
+
+void imprimeTodos(No *raiz){
+    if(raiz != NULL){
+        imprimeTodos(raiz->esquerda);
+        printf("\n------Prontário------\n");        
+        printf("Nome: %s/n", raiz->dados.nome);
+        printf("Cpf: %s/n", raiz->dados.cpf);
+        printf("Data de Nascimento %02d/%02d/%04d\n", raiz->dados.dataNasc.data,raiz->dados.dataNasc.mes, raiz->dados.dataNasc. ano );
+        printf("Histórico: %s\n", raiz->dados.historico);
+        printf("-----------------------\n");
+        imprimeTodos(raiz->direita);    
+    } 
+}
