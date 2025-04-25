@@ -1,7 +1,10 @@
 /*  Esqueleto para a função de Arvore Binária de Busca
     Objetivo - Criar Arvore Binária de Busca para buscar prontuarios médicos a partir de cpf (chave que não repete)
 */
-
+#include <stdio.h>
+#include <stdbool.h>
+#include <stdlib.h>
+#include <string.h>
 
 typedef struct {
     int data, mes, ano;
@@ -34,3 +37,9 @@ No* insere(No *raiz, Prontuario p);
 No* buscar(No *raiz, Prontuario p);
 
 No* remover(No *raiz, Prontuario p);
+
+bool atualizar(No *raiz, const char cpf, const char *novoNome, const char *novoHistorico);
+
+void imprimeTodos(No *raiz);
+
+void imprimeEspecifico(No *raiz, Prontuario p);
