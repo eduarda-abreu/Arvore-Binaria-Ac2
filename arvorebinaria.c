@@ -70,7 +70,7 @@ No* remover(No *raiz, Prontuario p){
                     while (aux->direita == NULL){
                         aux = aux->direita; //percorre a direita até achar o mais à direita 
                     }
-                    
+
                     /*Após achar o nó mais a direita troca os valores do nó a ser removido e o que vai substituir para que ele seja um nó folha ou com um filho só, assim faz recursão de função e chamando o remover para o nó , ai cairá em uma das situações acima e removerá o nó*/
                     raiz->dados = aux->dados;
                     aux->dados = p;
@@ -87,4 +87,22 @@ No* remover(No *raiz, Prontuario p){
             return raiz;
         }
     }  
- }
+}
+
+bool atualizar(No *raiz, const char cpf, const char *novoNome, const char *novoHistorico){
+    if(raiz == NULL){
+        return false; //não encontrou cpf ou não há raiz
+    }else{
+        if(strcmp(cpf, raiz->dados.cpf)==0){ 
+            strcpy(raiz->dados.nome, novoNome); //copia o novo nome na variavel da raiz, alterando o nome
+            strcpy(raiz->dados.historico, novoHistorico);//copia o novo histórico na variavel da raiz, alterando o histórico
+            return true;
+        }else{
+              if (strcmp(cpf, raiz->dados.cpf) < 0){ //atualiza na subarvore a esquerda
+                return atualizar(raiz->esquerda, cpf, novoNome, novoHistorico );
+            }else if (strcmp(cpf, raiz->dados.cpf) > 0){ //atualiza na subarvore a direita
+                return atualizar(raiz->direita, cpf, novoNome, novoHistorico );
+            }
+        }
+    }
+}
