@@ -111,11 +111,30 @@ void imprimeTodos(No *raiz){
     if(raiz != NULL){
         imprimeTodos(raiz->esquerda);
         printf("\n------Prontário------\n");        
-        printf("Nome: %s/n", raiz->dados.nome);
-        printf("Cpf: %s/n", raiz->dados.cpf);
+        printf("Nome: %s\n", raiz->dados.nome);
+        printf("Cpf: %s\n", raiz->dados.cpf);
         printf("Data de Nascimento %02d/%02d/%04d\n", raiz->dados.dataNasc.data,raiz->dados.dataNasc.mes, raiz->dados.dataNasc. ano );
         printf("Histórico: %s\n", raiz->dados.historico);
         printf("-----------------------\n");
         imprimeTodos(raiz->direita);    
     } 
+}
+
+void imprimeEspecifico(No *raiz, Prontuario p){
+    if (raiz != NULL){   
+        if(strcmp(p.cpf, raiz->dados.cpf)==0){
+            printf("\n------Prontário------\n");        
+            printf("Nome: %s\n", raiz->dados.nome);
+            printf("Cpf: %s\n", raiz->dados.cpf);
+            printf("Data de Nascimento %02d/%02d/%04d\n", raiz->dados.dataNasc.data,raiz->dados.dataNasc.mes, raiz->dados.dataNasc. ano );
+            printf("Histórico: %s\n", raiz->dados.historico);
+            printf("-----------------------\n");
+        }else{
+            if (strcmp(p.cpf, raiz->dados.cpf) < 0){ 
+                imprimeEspecifico(raiz->esquerda, p);
+            }else if (strcmp(p.cpf, raiz->dados.cpf) > 0){ 
+                imprimeEspecifico(raiz->direita, p);
+            }
+        }
+    }   
 }
