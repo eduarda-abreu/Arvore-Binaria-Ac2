@@ -29,3 +29,19 @@ No* insere(No *raiz, Prontuario p){
     }
 }
 
+No* buscar(No *raiz, Prontuario p){
+    if (raiz == NULL){
+       return 0; //Ou a árvore não existe ou elemento não foi encontrado.
+    }else{
+        if(strcmp(p.cpf, raiz->dados.cpf)==0){ //se der 0 são iguais
+            return raiz;
+        }else{
+            if (strcmp(p.cpf, raiz->dados.cpf) < 0){ //realiza busca na subarvore a esquerda
+                return buscar(raiz->esquerda, p);
+            }else if (strcmp(p.cpf, raiz->dados.cpf) > 0){ //realiza busca na subarvore a direita
+                return buscar(raiz->direita, p);
+            }
+        }
+    }   
+}
+
