@@ -11,7 +11,7 @@ typedef struct {
 typedef struct 
 {
     char nome[100];
-    char cpf[15]; //será usado como chave para a
+    char cpf[12]; //será usado como chave para a árvore, usa char pois há cpfs que começam com 0 e o int "apaga" esse 0 
     Data dataNasc; 
     char historico[1000];
 }Prontuario;
@@ -20,7 +20,7 @@ typedef struct
 typedef struct No
 {
     Prontuario dados;
-    struct no *esquerda, *direita;
+    struct no *esquerda, *direita; 
 }No;
 
 typedef struct{
@@ -31,4 +31,6 @@ void inicializarArvore(ArvB *arv);
 
 No* insere(No *raiz, Prontuario p);
 
-Prontuario buscar(No *raiz, Prontuario p);
+No* buscar(No *raiz, Prontuario p);
+
+No* remover(No *raiz, Prontuario p);
