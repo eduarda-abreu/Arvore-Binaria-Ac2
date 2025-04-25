@@ -107,7 +107,7 @@ bool atualizar(No *raiz, const char cpf, const char *novoNome, const char *novoH
     }
 }
 
-void imprimeTodos(No *raiz){
+void imprimeTodosInOrder(No *raiz){
     if(raiz != NULL){
         imprimeTodos(raiz->esquerda);
         printf("\n------Prontário------\n");        
@@ -120,7 +120,7 @@ void imprimeTodos(No *raiz){
     } 
 }
 
-void imprimeEspecifico(No *raiz, Prontuario p){
+void imprimeEspecifico(No *raiz, Prontuario p){ //imprime um prontuario especifico a partir do cpf
     if (raiz != NULL){   
         if(strcmp(p.cpf, raiz->dados.cpf)==0){
             printf("\n------Prontário------\n");        

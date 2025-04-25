@@ -40,6 +40,6 @@ No* remover(No *raiz, Prontuario p);
 
 bool atualizar(No *raiz, const char cpf, const char *novoNome, const char *novoHistorico);
 
-void imprimeTodos(No *raiz);
+void imprimeTodosInOrder(No *raiz);
 
 void imprimeEspecifico(No *raiz, Prontuario p);
