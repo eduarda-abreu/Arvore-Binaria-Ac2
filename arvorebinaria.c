@@ -17,7 +17,7 @@ No* insere(No *raiz, Prontuario p){
         return novo;
     }else{ //aqui adiciona abaixo da raiz, seguindo a ordem hierárquica
 
-        //cpf é char e char segue uma regra chamada lexicográfica que funciona como a ordem numérica, ou seja, compara se um número é maior que o outro, o que é o caso dos cpf, por isso a função abaixo compara os cpfs
+        //cpf é char e char segue uma regra chamada lexicografia que funciona como a ordem numérica, ou seja, compara se um número é maior que o outro pela ordem numérica, o que é o caso dos cpf, por isso a função abaixo compara os cpfs
 
         if (strcmp(p.cpf, raiz->dados.cpf) < 0){ //quando retorna negativo significa que o número é menor que o nó atual
             raiz->esquerda= insere(raiz->esquerda, p);
@@ -107,7 +107,7 @@ bool atualizar(No *raiz, const char cpf, const char *novoNome, const char *novoH
     }
 }
 
-void imprimeTodosInOrder(No *raiz){
+void imprimeTodosInOrder(No *raiz){ //imprime a arvore em ordem ou seja, Esquerda -> Raiz-> Direita
     if(raiz != NULL){
         imprimeTodos(raiz->esquerda);
         printf("\n------Prontário------\n");        
@@ -137,4 +137,56 @@ void imprimeEspecifico(No *raiz, Prontuario p){ //imprime um prontuario especifi
             }
         }
     }   
+}
+
+bool data_valida(int dia, int mes, int ano) {
+    if (ano < 1900 || ano > 2025) return false; // Anos válidos, para limitar se a data é valida, não há pessoas nascidas depois de 2025
+    if (mes < 1 || mes > 12) return false; //como os meses vão de 1 a 12, se for maior que 12 ou menor que 1 é classificada inválida 
+    
+    // Verifica se os dias correspondem com os dias contidos nos meses, já que nem todos tem a mesma quantidade de dias
+    int dias_mes[] = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
+    
+    // verificação para ano bissexto, ja que é o mes 2 e todo ano bissexto é divisivel por 
+    if (mes == 2 && ((ano % 400 == 0) || (ano % 100 != 0 && ano % 4 == 0))) {
+        dias_mes[1] = 29;
+    }
+    
+    return (dia >= 1 && dia <= dias_mes[mes-1]); //dia só é valido se for entre 1 e o ultimo dia do do seu mês
+}
+
+bool inserirDataNascimento(Prontuario *prontuario) {
+    if (prontuario == NULL) {
+        printf("Erro: Prontuário inexistente");
+        return false;
+    }
+
+    int dia, mes, ano;
+    
+    printf("\n--- Inserção de Data de Nascimento ---\n");
+    
+    // Pede para inserir até dar uma data válida
+    do {
+        printf("Dia (1-31): ");
+        scanf("%d", &dia);
+        
+        printf("Mês (1-12): ");
+        scanf("%d", &mes);
+        
+        printf("Ano (1900-2023): ");
+        scanf("%d", &ano);
+        
+        if (!data_valida(dia, mes, ano)) {
+            printf("Data inválida! Por favor, insira novamente.\n");
+        }
+    } while (!data_valida(dia, mes, ano));
+    
+    // Atribui a data validada ao prontuário
+    prontuario->dataNasc.data = dia;
+    prontuario->dataNasc.mes = mes;
+    prontuario->dataNasc.ano = ano;
+    
+    printf("Data de nascimento inserida com sucesso: %02d/%02d/%04d\n", 
+           dia, mes, ano); //imprime a data
+    
+    return true;
 }

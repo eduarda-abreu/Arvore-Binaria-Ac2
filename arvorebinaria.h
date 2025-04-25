@@ -43,3 +43,7 @@ bool atualizar(No *raiz, const char cpf, const char *novoNome, const char *novoH
 void imprimeTodosInOrder(No *raiz);
 
 void imprimeEspecifico(No *raiz, Prontuario p);
+
+bool data_valida(int dia, int mes, int ano);
+
+bool inserirDataNascimento(Prontuario *prontuario);
