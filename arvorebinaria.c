@@ -172,7 +172,7 @@ bool inserirDataNascimento(Prontuario *prontuario) {
         printf("Mês (1-12): ");
         scanf("%d", &mes);
         
-        printf("Ano (1900-2023): ");
+        printf("Ano (1900-2025): ");
         scanf("%d", &ano);
         
         if (!data_valida(dia, mes, ano)) {
