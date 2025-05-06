@@ -47,3 +47,5 @@ void imprimeEspecifico(No *raiz, Prontuario p);
 bool data_valida(int dia, int mes, int ano);
 
 bool inserirDataNascimento(Prontuario *prontuario);
+
+Prontuario lerProntuarioDoUsuario();

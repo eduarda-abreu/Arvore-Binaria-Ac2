@@ -190,3 +190,25 @@ bool inserirDataNascimento(Prontuario *prontuario) {
     
     return true;
 }
+
+Prontuario lerProntuarioDoUsuario() {
+    Prontuario p;
+    printf("Digite o nome: ");
+    getchar(); // Limpa buffer
+    fgets(p.nome, sizeof(p.nome), stdin);
+    p.nome[strcspn(p.nome, "\n")] = 0;
+
+    printf("Digite o CPF (somente números): ");
+    fgets(p.cpf, sizeof(p.cpf), stdin);
+    p.cpf[strcspn(p.cpf, "\n")] = 0;
+
+    printf("Digite a data de nascimento (dd mm aaaa): ");
+    scanf("%d %d %d", &p.dataNasc.data, &p.dataNasc.mes, &p.dataNasc.ano);
+
+    printf("Digite o histórico médico: ");
+    getchar(); // Limpa buffer
+    fgets(p.historico, sizeof(p.historico), stdin);
+    p.historico[strcspn(p.historico, "\n")] = 0;
+
+    return p;
+}
